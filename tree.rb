@@ -8,6 +8,19 @@ class Tree
     @queue = {}
   end
 
+    def build_tree
+      n = 1
+      new_data = Node.new(@tree_data)
+        self.sort(new_data.data, n)
+        until @queue.length == 0
+          num = @queue.keys.max
+          self.sort(@queue[num], num)
+          @queue.delete(num)
+        end
+    @levels.each { |n, lvl| puts "level ##{n}:  #{lvl}" }
+    end
+
+private
   def sort(data, n)
     n = n
     new_data = Node.new(data)
@@ -32,17 +45,5 @@ class Tree
       n += 1
     end
     @queue.each { |n, lvl| @queue.delete(n) if lvl.empty? }
-  end
-
-  def build_tree
-    n = 1
-    new_data = Node.new(@tree_data)
-      self.sort(new_data.data, n)
-      until @queue.length == 0
-        num = @queue.keys.max
-        self.sort(@queue[num], num)
-        @queue.delete(num)
-      end
-  @levels.each { |n, lvl| puts "level ##{n}:  #{lvl}" }
   end
 end

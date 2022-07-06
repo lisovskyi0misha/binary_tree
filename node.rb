@@ -20,6 +20,7 @@ class Node
     end
   end
 
+private
   def set_root
     if @data.length.even?
       root_it = @data[@data.length / 2]
